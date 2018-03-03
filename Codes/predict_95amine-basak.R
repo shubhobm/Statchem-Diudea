@@ -10,7 +10,7 @@ library(ncvreg)
 library(randomForest)
 library(caret)
 
-# combined descriptors
+# basak descriptors
 load('../Data/lta98.rda')
 y95 = lta98$Y[-1]
 X95 = as.matrix(with(lta98, cbind(ltaTS,ltaTC,lta3D, ltaQC))[-1,])
