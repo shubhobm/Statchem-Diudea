@@ -29,25 +29,36 @@ p = ncol(X508)
 
 ## Principal Component Analysis
 Xd = X508
-# depth = depth.projection(X508, X508, seed=04172018)
-# depth = max(depth) - depth
-# for(i in 1:n)
-# {
-#   z = sqrt(sum((Xd[i,  ])^2))
-#   if(z > ep)
-#   {
-#     Xd[i,  ] = depth[i] * (Xd[i,  ]  )/z
-#   }
-# }
+depth = depth.projection(X508, X508, seed=04172018)
+depth = max(depth) - depth
+for(i in 1:n)
+{
+  z = sqrt(sum((Xd[i,  ])^2))
+  if(z > ep)
+  {
+    Xd[i,  ] = depth[i] * (Xd[i,  ]  )/z
+  }
+}
 svd508 = svd(Xd)
-names508[order(abs(svd508$v[,1]))][1:10]
-svd508$v[order(abs(svd508$v[,1])),1][1:10]
+df.list = list()
+for(i in 1:10){
+  V1 = names508[order(abs(svd508$v[,i]), decreasing=T)][1:10]
+  V2 = svd508$v[order(abs(svd508$v[,i]), decreasing=T),i][1:10]
+  idf = data.frame(cbind(V1,round(V2,2)))
+  colnames(idf) = c("Descriptor","Loading")
+  df.list[[i]] = idf
+}
+names(df.list) = paste0("PC",1:10)
 
-names508[order(abs(svd508$v[,2]))][1:10]
-svd508$v[order(abs(svd508$v[,2])),2][1:10]
-
-names508[order(abs(svd508$v[,3]))][1:10]
-svd508$v[order(abs(svd508$v[,3])),3][1:10]
-
-names508[order(abs(svd508$v[,4]))][1:10]
-svd508$v[order(abs(svd508$v[,4])),4][1:10]
+# V1 = names508[order(abs(svd508$v[,2]), decreasing=T)][1:10]
+# V2 = svd508$v[order(abs(svd508$v[,2]), decreasing=T),2][1:10]
+# data.frame(cbind(V1,V2))
+# 
+# V1 = names508[order(abs(svd508$v[,3]), decreasing=T)][1:10]
+# V2 = svd508$v[order(abs(svd508$v[,3]), decreasing=T),3][1:10]
+# data.frame(cbind(V1,V2))
+# 
+# V1 = names508[order(abs(svd508$v[,4]), decreasing=T)][1:10]
+# V2 = svd508$v[order(abs(svd508$v[,4]), decreasing=T),4][1:10]
+# data.frame(cbind(V1,V2))
+# 

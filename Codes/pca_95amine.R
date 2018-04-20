@@ -4,6 +4,7 @@ rm(list=ls())
 source('RobustQSAR_functions.R')
 
 library(ddalpha)
+library(ICSNP)
 
 # combined descriptors
 combined95 = read.csv("../Data/Combined-descriptors-95.csv")
@@ -30,25 +31,39 @@ p = ncol(X95)
 ## Principal Component Analysis
 set.seed(04172018)
 Xd = X95
-# depth = depth.projection(X95, X95)
-# depth = max(depth) - depth
-# for(i in 1:n)
-# {
-#   z = sqrt(sum((Xd[i,  ])^2))
-#   if(z > ep)
-#   {
-#     Xd[i,  ] = depth[i] * (Xd[i,  ]  )/z
-#   }
-# }
+depth = depth.projection(X95, X95)
+depth = max(depth) - depth
+for(i in 1:n)
+{
+  z = sqrt(sum((Xd[i,  ])^2))
+  if(z > ep)
+  {
+    Xd[i,  ] = depth[i] * (Xd[i,  ]  )/z
+  }
+}
 svd95 = svd(Xd)
-names95[order(abs(svd95$v[,1]))][1:10]
-svd95$v[order(abs(svd95$v[,1])),1][1:10]
+df.list = list()
+for(i in 1:10){
+  V1 = names95[order(abs(svd95$v[,i]), decreasing=T)][1:10]
+  V2 = svd95$v[order(abs(svd95$v[,i]), decreasing=T),i][1:10]
+  idf = data.frame(cbind(V1,round(V2,2)))
+  colnames(idf) = c("Descriptor","Loading")
+  df.list[[i]] = idf
+}
+names(df.list) = paste0("PC",1:10)
 
-names95[order(abs(svd95$v[,2]))][1:10]
-svd95$v[order(abs(svd95$v[,2])),2][1:10]
-
-names95[order(abs(svd95$v[,3]))][1:10]
-svd95$v[order(abs(svd95$v[,3])),3][1:10]
-
-names95[order(abs(svd95$v[,4]))][1:10]
-svd95$v[order(abs(svd95$v[,4])),4][1:10]
+# V1 = names95[order(abs(svd95$v[,1]), decreasing=T)][1:10]
+# V2 = svd95$v[order(abs(svd95$v[,1]), decreasing=T),1][1:10]
+# data.frame(cbind(V1,round(V2,2)))
+# 
+# V1 = names95[order(abs(svd95$v[,2]), decreasing=T)][1:10]
+# V2 = svd95$v[order(abs(svd95$v[,2]), decreasing=T),2][1:10]
+# data.frame(cbind(V1,round(V2,2)))
+# 
+# V1 = names95[order(abs(svd95$v[,3]), decreasing=T)][1:10]
+# V2 = svd95$v[order(abs(svd95$v[,3]), decreasing=T),3][1:10]
+# data.frame(cbind(V1,round(V2,2)))
+# 
+# V1 = names95[order(abs(svd95$v[,4]), decreasing=T)][1:10]
+# V2 = svd95$v[order(abs(svd95$v[,4]), decreasing=T),4][1:10]
+# data.frame(cbind(V1,round(V2,2)))
