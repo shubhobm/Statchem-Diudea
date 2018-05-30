@@ -50,6 +50,10 @@ for(i in 1:10){
 }
 names(df.list) = paste0("PC",1:10)
 
+## explained variance proportions in data
+props = svd508$d/sum(svd508$d)
+cumsum(props)
+
 # V1 = names508[order(abs(svd508$v[,2]), decreasing=T)][1:10]
 # V2 = svd508$v[order(abs(svd508$v[,2]), decreasing=T),2][1:10]
 # data.frame(cbind(V1,V2))

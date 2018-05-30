@@ -1,6 +1,6 @@
 ##
 rm(list=ls())
-# setwd('c:/Study/My projects/Statchem-Diudea/Codes')
+# setwd('d:/Study/My projects/Statchem-Diudea/Codes')
 source('RobustQSAR_functions.R')
 
 library(ddalpha)
@@ -51,6 +51,10 @@ for(i in 1:10){
   df.list[[i]] = idf
 }
 names(df.list) = paste0("PC",1:10)
+
+## explained variance proportions in data
+props = svd95$d/sum(svd95$d)
+cumsum(props)
 
 # V1 = names95[order(abs(svd95$v[,1]), decreasing=T)][1:10]
 # V2 = svd95$v[order(abs(svd95$v[,1]), decreasing=T),1][1:10]
