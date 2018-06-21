@@ -1,0 +1,22 @@
+Reviewer(s)' Comments to Author:
+Referee: 1 
+
+Comments to the Author 
+The paper is very original and of interest. I only have the two following comments that need to be addressed in the revised version:
+Although the meaning of the descriptors listed in tables 4 and 5 is given in the supplementary material, it is necessary to give a brief description of them in the core of the text. The meaning of the figures in parentheses has also to be provided.
+The discussion looks like a conclusion and as a result, a true conclusion is missing. 
+
+Referee: 2 
+
+Comments to the Author 
+In this chemometrical paper, descriptors from two origins and a set of modeling techniques were compared. The paper deserves publication but some parts require to be better described. The points that require a specific attention are given below.
++ What was the S. thyphimurium strain for the second data set of 508 chemicals?
++ Description of principal component analysis does not follow the classical matrix notation.
++ PCR and PLS were used as predictive tools but the numbers of PCs and latent variables retained in the models are not given. In the same way, Random Forest and Gradient Boosting Machine were used but the number of trees used in each approach is not given. In addition, the parameter settings leading to each model are not provided. The characteristics of the SCAD and Lasso models are also not given.
++ What is the mechanistic information supported by the models? Are these collections of descriptor allow us to better explain mutagenicity?
+
+____________________________________
+Editorial problems that must be corrected
+- The first page of the manuscript must include the title of the paper, the name(s) of the author(s), their postal address, and the email address of the corresponding author. The second page must only include the abstract and the keywords.
+- Tables must be only listed at the end of the paper
+- At the top of the supplementary information put the title of the paper, the name(s) of the author(s), their postal address, and the email address of the corresponding author. Do not highlight material in this file.
