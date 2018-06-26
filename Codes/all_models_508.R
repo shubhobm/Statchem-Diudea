@@ -1,4 +1,4 @@
-##
+## Code to generate all model objects for 508 data
 rm(list=ls())
 # setwd('D:/Study/My projects/Statchem-Diudea/Codes')
 source('RobustQSAR_functions.R')
